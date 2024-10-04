@@ -2,23 +2,24 @@ export const SET_VIEW_MODE = 'SET_VIEW_MODE';
 export const SET_DARK_MODE = 'SET_DARK_MODE';
 export const SET_ARTICLE_IDS = 'SET_ARTICLE_IDS';
 export const SET_ARTICLES = 'SET_ARTICLES';
+export const ADD_PAGE = 'ADD_PAGE';
 
-const viewMode = Object.freeze({
+const viewModes = Object.freeze({
   LATEST: 0,
   STARRED: 1,
 });
 
 const initialState = {
   isDarkMode: false,
-  viewMode: viewMode.LATEST,
+  viewMode: viewModes.LATEST,
   articleIds: [],
   articles: {},
   currentPage: 1,
-  pageCount: 12
+  articlesPerPage: 12
 };
 
 
-const combinedReducers = (state = initialState, action) => {
+const reducers = (state = initialState, action) => {
   switch (action.type) {
     case SET_VIEW_MODE:
       return {
@@ -30,6 +31,11 @@ const combinedReducers = (state = initialState, action) => {
         ...state,
         isDarkMode: !state.isDarkMode,
       };
+    case ADD_PAGE:
+      return {
+        ...state,
+        currentPage: state.currentPage + 1
+      }
     case SET_ARTICLE_IDS:
       return {
         ...state,
@@ -53,4 +59,4 @@ const combinedReducers = (state = initialState, action) => {
   }
 };
 
-export default combinedReducers;
+export default reducers;

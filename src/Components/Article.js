@@ -1,8 +1,6 @@
-import react from 'react';
-
-const Article = () => {
+const Article = ({article: {title, id}}) => {
     return (
-        <div>Article</div>
+        <div>{title}</div>
     )
 }
 
