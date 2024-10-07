@@ -7,3 +7,47 @@ export const getOrderedArticles = (articles, articleIds, currentPage, articlesPe
         return [];
     }
 }
+
+// pass this in at the top level to avoid having to instantiate every time we run the getCurrentTime functio
+// need to think about it getting stale since state is saved. Maybe check everytime component is rendered? Or does it actually rerun?? Probably..
+export const getTimeRecency = (articleTime, currentTime) => {
+    const articleSecondsAgo = Math.round(currentTime - articleTime);
+
+    const minuteSeconds = 60;
+    const hourSeconds = minuteSeconds * 60;
+    const daySeconds = hourSeconds * 24;
+    const weekSeconds = daySeconds * 7;
+    const monthSeconds = daySeconds * 30;
+    const yearSeconds = daySeconds * 365;
+
+    let timeFrameText = '';
+    let timeFrameValue = 0;
+
+    if (articleSecondsAgo / yearSeconds >= 1) {
+        timeFrameText = 'year';
+        timeFrameValue = Math.round(articleSecondsAgo / yearSeconds);
+    } else if (articleSecondsAgo / monthSeconds >= 1) {
+        timeFrameText = 'month';
+        timeFrameValue = Math.round(articleSecondsAgo / monthSeconds);
+    } else if (articleSecondsAgo / weekSeconds >= 1) {
+        timeFrameText = 'week';
+        timeFrameValue = Math.round(articleSecondsAgo / weekSeconds);
+    } else if (articleSecondsAgo / daySeconds >= 1) {
+        timeFrameText = 'day';
+        timeFrameValue = Math.round(articleSecondsAgo / daySeconds);
+    } else if (articleSecondsAgo / hourSeconds >= 1) {
+        timeFrameText = 'hour';
+        timeFrameValue = Math.round(articleSecondsAgo / hourSeconds);
+    } else if (articleSecondsAgo / minuteSeconds >= 1) {
+        timeFrameText = 'minute';
+        timeFrameValue = Math.round(articleSecondsAgo / minuteSeconds);
+    } else {
+        return 'less than a minute ago';
+    }
+
+    if (timeFrameValue > 1) {
+        return `${timeFrameValue} ${timeFrameText}s ago`
+    } else {
+        return `${timeFrameValue} ${timeFrameText} ago`
+    }
+}

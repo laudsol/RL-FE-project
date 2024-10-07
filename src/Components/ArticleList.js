@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { READ_ARTICLE, STAR_ARTICLE } from "../Store/reducers/reducers.js";
 import Article  from "./Article.js";
+import { getTimeRecency } from "../Utils/Utils.js";
 
 const ArticleList = (props) => {
     const dispatch = useDispatch();
+    const currentTime = (new Date).getTime() / 1000;
 
     const openArticle = (url, id) => {
         window.open(url, '_blank').focus();
@@ -22,15 +24,19 @@ const ArticleList = (props) => {
     }
 
     return (
-        <>
-            {props.orderedArticles.length > 0 && props.orderedArticles.map(article =>
-                <Article 
-                    key={article.id}
-                    article={article}
-                    openArticle={openArticle}
-                    starArticle={starArticle}
-                ></Article>)}
-        </>
+        <div className="article-list">
+            <ol>
+                {props.orderedArticles.length > 0 && props.orderedArticles.map(article => 
+                    <Article 
+                        key={article.id}
+                        article={article}
+                        timeText={getTimeRecency(article.time, currentTime)}
+                        openArticle={openArticle}
+                        starArticle={starArticle}
+                    ></Article>
+                )}
+            </ol>
+        </div>
     )
 }
 

@@ -11,3 +11,4 @@ Components
 3) Question of where all the logic should live. Redundant to have starred and save in both parent components, should keeping these in ArticleList. 
 4) Starred page - show by when it was starred? Maybe double sort: first show unread, then starred.
 5) Put Article List into OL / LI elements
+6) Cut off text after X characters

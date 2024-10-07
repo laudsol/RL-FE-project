@@ -43,7 +43,7 @@ const LatestArticles = () => {
     return (
         <>
             <ArticleList orderedArticles={orderedArticles}></ArticleList>
-            <div onClick={() => getNextArticles()}>More</div>
+            <div className="show-more" onClick={() => getNextArticles()}>show more</div>
         </>
     )
 }
