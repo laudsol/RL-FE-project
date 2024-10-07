@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
+
 const Header = () => {
     return (
         <>
-            <div>Latest</div>
-            <div>Starred</div>
+            <Link to="/latest">Latest</Link>
+            <br></br>
+            <Link to="/starred">Starred</Link>
         </>
     )
 }

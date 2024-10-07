@@ -8,10 +8,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 function App() {
   return (
     <Router>
-        <Header>
-          <Link to="/latest"></Link>
-          <Link to="/starred"></Link>
-        </Header>
+        <Header/>
         <Routes>
           <Route path='/' element={<LatestArticles/>}/>
           <Route path='/latest' element={<LatestArticles/>}/>
