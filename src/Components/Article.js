@@ -1,6 +1,10 @@
-const Article = ({article: {title, id}}) => {
+const Article = (props) => {
+    const {id, title, url, isStarred, isRead} = props.article;
     return (
-        <div>{title}</div>
+        <>
+            <div onClick={() => props.openArticle(url, id)}>{title}</div>
+            <div onClick={() => props.starArticle(id)}>Saved: {isStarred ? 'Y' : 'N'}</div>
+        </>
     )
 }
 
