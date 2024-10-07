@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { READ_ARTICLE, STAR_ARTICLE } from "../Store/reducers/reducers.js";
 import Article  from "./Article.js";
 import { getTimeRecency } from "../Utils/Utils.js";
+import emtpy_star from "../Assets/empty_star.svg"
+import orange_star from "../Assets/orange_star.svg"
 
 const ArticleList = (props) => {
     const dispatch = useDispatch();
@@ -23,6 +25,10 @@ const ArticleList = (props) => {
         });
     }
 
+    const getStar = (isStarred) => {
+        return isStarred ? orange_star : emtpy_star
+    }
+
     return (
         <div className="article-list">
             <ol>
@@ -33,6 +39,7 @@ const ArticleList = (props) => {
                         timeText={getTimeRecency(article.time, currentTime)}
                         openArticle={openArticle}
                         starArticle={starArticle}
+                        star={getStar(article.isStarred)}
                     ></Article>
                 )}
             </ol>
@@ -41,3 +48,4 @@ const ArticleList = (props) => {
 }
 
 export default ArticleList;
+

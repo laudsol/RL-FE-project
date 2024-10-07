@@ -3,14 +3,24 @@ const Article = (props) => {
 
     const authorText = `${score} points by ${by}`;
     const commentsText = `${kids && kids.length} comments`;
-    const infoText = `${authorText} ${props.timeText} | ${commentsText}`
+    const infoText = `${authorText} ${props.timeText} | ${commentsText} | ` 
+    const sourceText = ` (${url?.split("/")?.[2]}) `; // stolen from a different project ;)
+    const saveText = isStarred ? ' saved' : ' save';
 
     return (
-        <li className="article">
-            <div className="article-title" onClick={() => props.openArticle(url, id)}>{title}</div>
-            <div className="article-meta">{infoText}</div>
-            <div className="article-actions" onClick={() => props.starArticle(id)}>Saved: {isStarred ? 'Y' : 'N'}</div>
-            <div className="article-meta">Read: {isRead ? 'Y' : 'N'}</div>
+        <li className={isRead ? 'article read' : 'article'}>
+            <div className="article-title" onClick={() => props.openArticle(url, id)}>
+                {title}
+                {sourceText && 
+                    <span className="article-source">
+                        {sourceText}
+                    </span>
+                }
+            </div>
+            <div className="article-meta">
+                {infoText}
+                <span className="article-actions" onClick={() => props.starArticle(id) }><img src={props.star}></img>{saveText}</span>
+            </div>
         </li>
     )
 }

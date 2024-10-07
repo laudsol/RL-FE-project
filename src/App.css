@@ -25,7 +25,6 @@ header nav a:hover {
   text-decoration: underline;
 }
 
-/* Article list container */
 .article-list {
   max-width: 800px;
   margin: 20px auto;
@@ -35,9 +34,7 @@ header nav a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Individual article styles */
 .article {
-  display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #eaeaea;
   padding: 10px 0;
@@ -50,6 +47,16 @@ header nav a:hover {
 .article .article-title {
   font-weight: bold;
   color: #333;
+}
+
+.article.read .article-title {
+  text-decoration: line-through;
+}
+
+.article-source {
+  color: #999;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .article .article-meta {
@@ -74,7 +81,6 @@ header nav a:hover {
   background-color: #ff4500;
 }
 
-/* "Show more" button */
 .show-more {
   text-align: center;
   margin: 20px 0;
