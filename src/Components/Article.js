@@ -4,6 +4,7 @@ const Article = (props) => {
         <>
             <div onClick={() => props.openArticle(url, id)}>{title}</div>
             <div onClick={() => props.starArticle(id)}>Saved: {isStarred ? 'Y' : 'N'}</div>
+            <div>Read: {isRead ? 'Y' : 'N'}</div>
         </>
     )
 }
