@@ -8,8 +8,6 @@ export const getOrderedArticles = (articles, articleIds, currentPage, articlesPe
     }
 }
 
-// pass this in at the top level to avoid having to instantiate every time we run the getCurrentTime functio
-// need to think about it getting stale since state is saved. Maybe check everytime component is rendered? Or does it actually rerun?? Probably..
 export const getTimeRecency = (articleTime, currentTime) => {
     const articleSecondsAgo = Math.round(currentTime - articleTime);
 

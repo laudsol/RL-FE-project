@@ -17,6 +17,4 @@ Components
 
 
 To Do
-1) Add alts to images
-2) Fix undefined comments
 3) Think about time more carefully, if nums are bad it will always show "less than a minute ago"

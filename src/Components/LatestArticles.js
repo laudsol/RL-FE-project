@@ -12,7 +12,6 @@ const LatestArticles = () => {
     const articlesPerPage = useSelector(state => state.reducers.articlesPerPage);
     const currentPage = useSelector(state => state.reducers.currentPage);
     const orderedArticles = getOrderedArticles(articles, articleIds, currentPage, articlesPerPage);
-
     const observerRef = useRef(null);
 
     const getNextArticles = useCallback((ids => {

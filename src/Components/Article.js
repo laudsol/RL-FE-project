@@ -1,15 +1,24 @@
-const Article = (props) => {
-    const {id, title, url, isStarred, isRead, score, by, kids} = props.article;
+import React, { useEffect, useRef, memo } from "react";
 
+
+const Article = memo((props) => {
+    const {id, title, url, isStarred, isRead, score, by, kids} = props.article;
     const authorText = `${score} points by ${by}`;
-    const commentsText = `${kids && kids.length} comments`;
-    const infoText = `${authorText} ${props.timeText} | ${commentsText} | ` 
-    const sourceText = ` (${url?.split("/")?.[2]}) `; // stolen from a different project ;)
+    const commentsText = `${kids ? kids.length : '0'} comments`;
+    const infoText = `${authorText} ${props.timeText} | ${commentsText} | ` ;
+    const sourceText = ` (${url?.split("/")?.[2]}) `;
     const saveText = isStarred ? ' saved' : ' save';
+    
+    const renderCount = useRef(1);
+    
+    useEffect(() => {
+        renderCount.current += 1;
+      });
 
     return (
         <li className={isRead ? 'article read' : 'article'}>
             <div className="article-title" onClick={() => props.openArticle(url, id)}>
+                {renderCount.current}
                 {title}
                 {sourceText && 
                     <span className="article-source">
@@ -23,6 +32,6 @@ const Article = (props) => {
             </div>
         </li>
     )
-}
+})
 
 export default Article;
