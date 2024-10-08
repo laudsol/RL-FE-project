@@ -18,13 +18,17 @@ body {
   border-top: 4px solid #ff6600
 }
   
-  header {
+header {
   padding: 20px;
   padding-left: 35px;
   display: flex;
   justify-content: flex-start;
   gap: 15px;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
 }
 
 
@@ -63,6 +67,17 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+li::marker {
+  color: #999;
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+}
+
 .active-link {
   color: #ff6600;
   font-weight: bold;
@@ -78,35 +93,39 @@ header nav a:hover {
   padding: 10px 0;
 }
 
-.article:last-child {
-  border-bottom: none;
-}
 
 .article .article-title {
-  font-weight: bold;
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .article.read .article-title {
   text-decoration: line-through;
 }
 
-.article-source {
+.article .article-source {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
   color: #999;
-  font-size: 14px;
-  font-weight: normal;
+  margin-left: 10px;
 }
 
 .article .article-meta {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
   color: #999;
-  font-size: 14px;
-}
-
-.article-order::before {
-  color: #999;
-}
-
-.article-order * {
-  color: inherit; /* Ensures child elements don't inherit the color */
+  margin-left: 10px;
 }
 
 .article .article-actions {
