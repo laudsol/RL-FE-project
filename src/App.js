@@ -18,6 +18,7 @@ function App() {
 
 
   return (
+    <div className='container'>
     <Router>
         <Header/>
         <Routes>
@@ -28,6 +29,7 @@ function App() {
         </Routes>
         <Footer/>
     </Router>
+    </div>
   );
 }
 

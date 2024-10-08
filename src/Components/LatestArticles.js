@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getArticleIds, getArticles } from "../Services/articleApi.js";
 import { SET_ARTICLE_IDS, SET_ARTICLES, ADD_PAGE } from "../Store/reducers/reducers.js";
@@ -13,10 +13,13 @@ const LatestArticles = () => {
     const currentPage = useSelector(state => state.reducers.currentPage);
     const orderedArticles = getOrderedArticles(articles, articleIds, currentPage, articlesPerPage);
 
-    const getNextArticles = (ids) => {
+    const observerRef = useRef(null);
+
+    const getNextArticles = useCallback((ids => {
         const startId = currentPage * articlesPerPage;
         const idsToUse = ids && ids.length > 0 ? ids : articleIds;
         const nextArticleIds = idsToUse.slice(startId, startId + articlesPerPage);
+        
         getArticles(nextArticleIds).then(articleData => {
             dispatch({
                 type: SET_ARTICLES,
@@ -26,7 +29,7 @@ const LatestArticles = () => {
                 type: ADD_PAGE
             });
         });
-    }
+    }), [dispatch, articleIds, articlesPerPage, currentPage]);
 
     useEffect(() => {
         if (articleIds.length === 0) {
@@ -35,17 +38,36 @@ const LatestArticles = () => {
                     type: SET_ARTICLE_IDS,
                     payload: ids
                 });
-                getNextArticles(ids)
-                });
+                getNextArticles(ids);
+            });
         }
-    }, [dispatch, articleIds.length]);
+    }, [dispatch, articleIds.length, getNextArticles]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            const target = entries[0];
+            if (target.isIntersecting) {
+                getNextArticles();
+            }
+        });
+
+        if (observerRef.current) {
+            observer.observe(observerRef.current);
+        }
+
+        return () => {
+            if (observerRef.current) {
+                observer.unobserve(observerRef.current);
+            }
+        };
+    }, [getNextArticles]);
 
     return (
-        <>
-            <ArticleList orderedArticles={orderedArticles}></ArticleList>
-            <button className="show-more" onClick={() => getNextArticles()}>show more</button>
-        </>
-    )
-}
+        <div className='articles-container'>
+            <ArticleList orderedArticles={orderedArticles} />
+            <div ref={observerRef} style={{ height: '20px', margin: '20px' }}></div>
+        </div>
+    );
+};
 
 export default LatestArticles;

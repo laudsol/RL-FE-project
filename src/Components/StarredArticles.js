@@ -13,9 +13,10 @@ const StarredArticles = () => {
     });
 
     return (
-        <>
+        <div className='articles-container'>
             <ArticleList orderedArticles={orderedStarredArticles}></ArticleList>
-        </>
+        </div>
+        
     )
 }
 
