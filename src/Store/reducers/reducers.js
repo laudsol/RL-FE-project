@@ -6,7 +6,7 @@ export const ADD_PAGE = 'ADD_PAGE';
 export const READ_ARTICLE = 'READ_ARTICLE';
 export const STAR_ARTICLE ='STAR_ARTICLE';
 
-const viewModes = Object.freeze({
+export const viewModes = Object.freeze({
   LATEST: 0,
   STARRED: 1,
 });

@@ -1,21 +1,35 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 0;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --nav-link-color: black;
 }
 
-/* Header styles */
-header {
-  background-color: #ff6600;
-  padding: 10px;
-  text-align: center;
-  color: white;
+[data-theme="dark"] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --nav-link-color: white;
 }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  border-top: 4px solid #ff6600
+}
+  
+  header {
+  padding: 20px;
+  padding-left: 35px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  align-items: center;
+}
+
 
 header nav a {
-  color: white;
+  color: var(--nav-link-color);
   text-decoration: none;
   margin: 0 15px;
   font-size: 18px;
@@ -25,18 +39,42 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+.style-icon {
+  margin-left: auto;
+  padding-right: 35px;
+}
+
+footer {
+  padding: 10px;
+  text-align: center;
+  border-top: 2px solid #ff6600;
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+footer nav a {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 12px;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+.active-link {
+  color: #ff6600;
+  font-weight: bold;
+}
+
 .article-list {
-  max-width: 800px;
   margin: 20px auto;
-  background-color: white;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .article {
   justify-content: space-between;
-  border-bottom: 1px solid #eaeaea;
   padding: 10px 0;
 }
 
@@ -46,7 +84,6 @@ header nav a:hover {
 
 .article .article-title {
   font-weight: bold;
-  color: #333;
 }
 
 .article.read .article-title {
@@ -62,6 +99,14 @@ header nav a:hover {
 .article .article-meta {
   color: #999;
   font-size: 14px;
+}
+
+.article-order::before {
+  color: #999;
+}
+
+.article-order * {
+  color: inherit; /* Ensures child elements don't inherit the color */
 }
 
 .article .article-actions {
@@ -83,19 +128,17 @@ header nav a:hover {
 
 .show-more {
   text-align: center;
-  margin: 20px 0;
-}
-
-.show-more button {
+  margin-bottom: 20px;
+  margin-left: 65px;
   background-color: #ff6600;
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
 }
 
-.show-more button:hover {
+.show-more:hover {
   background-color: #ff4500;
 }
+

@@ -29,7 +29,7 @@ const LatestArticles = () => {
     }
 
     useEffect(() => {
-        if (articleIds.length == 0) {
+        if (articleIds.length === 0) {
             getArticleIds().then(ids => {
                 dispatch({
                     type: SET_ARTICLE_IDS,
@@ -38,12 +38,12 @@ const LatestArticles = () => {
                 getNextArticles(ids)
                 });
         }
-    }, [dispatch]);
+    }, [dispatch, articleIds.length]);
 
     return (
         <>
             <ArticleList orderedArticles={orderedArticles}></ArticleList>
-            <div className="show-more" onClick={() => getNextArticles()}>show more</div>
+            <button className="show-more" onClick={() => getNextArticles()}>show more</button>
         </>
     )
 }

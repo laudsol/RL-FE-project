@@ -19,7 +19,7 @@ const Article = (props) => {
             </div>
             <div className="article-meta">
                 {infoText}
-                <span className="article-actions" onClick={() => props.starArticle(id) }><img src={props.star}></img>{saveText}</span>
+                <span className="article-actions" onClick={() => props.starArticle(id) }><img src={props.star} alt="star"></img>{saveText}</span>
             </div>
         </li>
     )

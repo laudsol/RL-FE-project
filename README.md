@@ -13,3 +13,10 @@ Components
 5) Put Article List into OL / LI elements
 6) Cut off text after X characters
 7) Add button to mark unread?? Or mark all unread?
+
+
+
+To Do
+1) Add alts to images
+2) Fix undefined comments
+3) Think about time more carefully, if nums are bad it will always show "less than a minute ago"
