@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo } from "react";
+import React, { memo } from "react";
 
 
 const Article = memo((props) => {
@@ -8,17 +8,10 @@ const Article = memo((props) => {
     const infoText = `${authorText} ${props.timeText} | ${commentsText} | ` ;
     const sourceText = ` (${url?.split("/")?.[2]}) `;
     const saveText = isStarred ? ' saved' : ' save';
-    
-    const renderCount = useRef(1);
-    
-    useEffect(() => {
-        renderCount.current += 1;
-      });
 
     return (
         <li className={isRead ? 'article read' : 'article'}>
             <div className="article-title" onClick={() => props.openArticle(url, id)}>
-                {renderCount.current}
                 {title}
                 {sourceText && 
                     <span className="article-source">

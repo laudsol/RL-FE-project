@@ -14,7 +14,7 @@ const StarredArticles = () => {
 
     return (
         <div className='articles-container'>
-            <ArticleList orderedArticles={orderedStarredArticles}></ArticleList>
+            {orderedStarredArticles.length > 0 && <ArticleList orderedArticles={orderedStarredArticles}></ArticleList>}
         </div>
         
     )
