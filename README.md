@@ -1,28 +1,20 @@
-Hacker News API Docs: https://github.com/HackerNews/API
+**Overview**
+1) This app gets news articles from the Hacker News API. Documentation: https://github.com/HackerNews/API
+2) Features include live data, "show more" button, navigable liks, and ability to toggle light/dark mode
+3) Users can see articles, open them in new tabs, save them, and get more artilces
 
-Thoughts on State:
-1) Page types should be an ENUM. Strings are bad practice. Boolean (isLatest vs !isLatest) would complicate thigns if we wanted to add additional views
-2) Use redux-persist to avoid the store being wiped every time the route changes
+**To up items (if this were real life)**
+1) Talk to the Product Manager to get feedback on the following: The app displays how long ago the article was written. I think its worthwhile to not just display hours (like the mockup) but get into detail, like minutes, hours, days, weeks, months, and years. I've memoized the article component, so it won't update unless there are new props, so when the user fetches new data the existing article element don't rerender. Since data is storred in localStorage and the components don't rerender, the function for determining article recency might not rerun and the data could get pretty stale (user might see that the article was written 10 minutes ago, but it could be the day before if that's when it was first rendered). We'd want some policy to determine how frequently we should run the function to update the time: too frequently would result in lots of additional calls and rerenders, and too infrequently would result in unacceptably stale data.Really depends on how important the data is to the users and how much data will be used in the app / how heavy the app will be.
+2) Comlete integration tests for API calls. Running into babel and webpack problems ralted to the testing library, which I think are out of the scope for this project.
+3) Create wireframes and reorganize the CSS (some of the current styling artchitecture isn't ideal if the app were to be extended).
+4) Some areas of the code initialize variables using 'let'. I'm not a huge fan of reassigning values to variables, and I'd like to rewrite these.
 
-
-Components
-1) Reusability is important, so artcle and articleList are agnostic 
-2) In current context, a bit heavy to have two different components for Latest and Starred, but this will make adding more page types (maybe a "trending" page) easier in future
-3) Question of where all the logic should live. Redundant to have starred and save in both parent components, should keeping these in ArticleList. 
-4) Starred page - show by when it was starred? Maybe double sort: first show unread, then starred. Add button to clear all starred.
-5) Put Article List into OL / LI elements
-6) Cut off text after X characters
-7) Add button to mark unread?? Or mark all unread?
-8) useCallback allows functions to be passed as props for purposes of memoization. Also pass article.isRead as a direct prop to trigger rerender when changed.
-
-
-
-To Do
-1) Time Recency function has tradeofs. Can run it every time something changes, but this produces lots of unnecessary computations, and doesn't change the display that much. On the other hand, we dont want the timestamps to be too stale. Change the logic so it only runs once per hour...
-
-
-Testing
-1) Utils functions, especailly time
-2) Integration tests for services, and maybe for components. Want to check how it handles failures
-3) Might want to test reducers
-4) Want some kind of way to test if the memoization is going to stop working
+**Coding decisions**
+1) I implemented the following archtecture decisions with a mind to making the app more extensible (like adding abother page based on the same data)
+    a) In my store, I've used something like an ENUM to represent the page types (latest, starred). Instaed of comparing strings, the keys on viewModes are used to check the active view. Ideally, I would have written the app in typescript, in which case I'd have used the ENUM type.
+    b) I've made the ArticeList and Article components reusable
+    c) Using react-router
+2) I implemented memo to avoid rerendering every instance of the Article component every time there is new data. Since memo only uses shallow comparison of props, I needed to include the following to get it to work properly:
+    a) Wrap functions in useCallback, otherwise the component automatically rerenders
+    b) Pass isRead as its own prop (not an attribute on the aticle oject) so the componened reredners when a user clicks on an article
+3) I started working on infinite scroll. The feature itself worked but pulled lots more data than I wanted on upon initial render. Would need more time to dig into it to optimize data fetching.

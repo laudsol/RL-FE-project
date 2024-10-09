@@ -22,7 +22,6 @@ const initialState = {
 
 
 const reducers = (state = initialState, action) => {
-  // Don't love this implementation... 1) reassigns a variable 2) not sure how stable this is in state
   let articles = {};
   switch (action.type) {
     case SET_VIEW_MODE:

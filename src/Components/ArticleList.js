@@ -10,7 +10,7 @@ import orange_star from "../Assets/orange_star.svg"
 const ArticleList = (props) => {
     const dispatch = useDispatch();
     const isDarkMode = useSelector(state => state.reducers.isDarkMode);
-    const currentTime = (new Date).getTime() / 1000;
+    const currentTime = (new Date()).getTime() / 1000;
 
     const openArticle = useCallback((url, id) => {
         window.open(url, '_blank').focus();
