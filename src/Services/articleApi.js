@@ -27,7 +27,7 @@ export const getArticleIds = async () => {
     );
     return data;
   } catch (error) {
-    console.log('Error while getting list of articles.');
+    console.log('Error while getting list of article ids.');
   }
 }
 

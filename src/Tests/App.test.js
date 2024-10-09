@@ -1,5 +1,8 @@
 
-import { getTimeRecencyTest, getOrderedArticlesTest } from './Unit_tests';
+import { getTimeRecencyTest, getOrderedArticlesTest } from './unit_tests';
+import { latestArticlesComponent } from './integration_tests'
 
 getTimeRecencyTest();
 getOrderedArticlesTest();
+
+latestArticlesComponent();
