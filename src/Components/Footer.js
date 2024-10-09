@@ -5,9 +5,9 @@ const Footer = () => {
         <footer>
             <h4>Hacker News</h4>
             <nav>
-                <Link to="/latest">Latest</Link>
+                <Link to="/latest">latest</Link>
                 {'|'}
-                <Link to="/starred">Starred</Link>
+                <Link to="/starred">starred</Link>
             </nav>
         </footer>
 

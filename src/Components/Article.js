@@ -2,7 +2,7 @@ import React, { memo } from "react";
 
 
 const Article = memo((props) => {
-    const {id, title, url, isStarred, isRead, score, by, kids} = props.article;
+    const {id, title, url, isStarred, score, by, kids} = props.article;
     const authorText = `${score} points by ${by}`;
     const commentsText = `${kids ? kids.length : '0'} comments`;
     const infoText = `${authorText} ${props.timeText} | ${commentsText} | ` ;
@@ -10,7 +10,7 @@ const Article = memo((props) => {
     const saveText = isStarred ? ' saved' : ' save';
 
     return (
-        <li className={isRead ? 'article read' : 'article'}>
+        <li className={props.isRead ? 'article read' : 'article'}>
             <div className="article-title" onClick={() => props.openArticle(url, id)}>
                 {title}
                 {sourceText && 
@@ -28,3 +28,4 @@ const Article = memo((props) => {
 })
 
 export default Article;
+

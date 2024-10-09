@@ -44,9 +44,9 @@ const Header = () => {
             <img src={yCombLogo} alt='y_comb_logo'></img>
             <h2>Hacker News</h2>
             <nav>
-                <Link to="/latest" className={checkActiveLink(viewModes.LATEST)}>Latest</Link>
+                <Link to="/latest" className={checkActiveLink(viewModes.LATEST)}>latest</Link>
                 {'|'}
-                <Link to="/starred" className={checkActiveLink(viewModes.STARRED)}>Starred</Link>
+                <Link to="/starred" className={checkActiveLink(viewModes.STARRED)}>starred</Link>
             </nav>
             <div className="style-icon" onClick={() => changeDarkMode()}>
                 <img src={styleIcon} alt="style_icon"></img>

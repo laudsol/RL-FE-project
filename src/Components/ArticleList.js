@@ -1,14 +1,15 @@
 import { useCallback } from "react";
-
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { READ_ARTICLE, STAR_ARTICLE } from "../Store/reducers/reducers.js";
 import Article  from "./Article.js";
 import { getTimeRecency } from "../Utils/Utils.js";
 import emtpy_star from "../Assets/empty_star.svg"
+import dark_star from "../Assets/dark_star.svg"
 import orange_star from "../Assets/orange_star.svg"
 
 const ArticleList = (props) => {
     const dispatch = useDispatch();
+    const isDarkMode = useSelector(state => state.reducers.isDarkMode);
     const currentTime = (new Date).getTime() / 1000;
 
     const openArticle = useCallback((url, id) => {
@@ -18,17 +19,23 @@ const ArticleList = (props) => {
             type: READ_ARTICLE,
             payload: id
         });
-    }, []);
+    }, [dispatch]);
 
     const starArticle = useCallback((id) => {
         dispatch({
             type: STAR_ARTICLE,
             payload: id
         });
-    }, []);
+    }, [dispatch]);
 
     const getStar = (isStarred) => {
-        return isStarred ? orange_star : emtpy_star
+        if (isStarred) {
+            return orange_star;
+        } else if (isDarkMode) {
+            return dark_star;
+        } else {
+            return emtpy_star;
+        }
     }
 
     return (
@@ -43,6 +50,7 @@ const ArticleList = (props) => {
                             openArticle={openArticle}
                             starArticle={starArticle}
                             star={getStar(article.isStarred)}
+                            isRead={article.isRead}
                         ></Article>
                     )}
                 )}

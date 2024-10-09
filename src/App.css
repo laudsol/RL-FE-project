@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700');
+
+
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
@@ -51,7 +55,8 @@ header nav a {
   color: var(--nav-link-color);
   text-decoration: none;
   margin: 0 15px;
-  font-size: 18px;
+  font-size: 14px;
+  font-family: 'Open Sans';
 }
 
 header nav a:hover {
@@ -126,7 +131,7 @@ li::marker {
 }
 
 .article.read .article-title {
-  text-decoration: line-through;
+  color: #999;
 }
 
 .article .article-source {
@@ -181,4 +186,3 @@ li::marker {
 .show-more:hover {
   background-color: #ff4500;
 }
-

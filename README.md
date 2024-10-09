@@ -13,8 +13,9 @@ Components
 5) Put Article List into OL / LI elements
 6) Cut off text after X characters
 7) Add button to mark unread?? Or mark all unread?
+8) useCallback allows functions to be passed as props for purposes of memoization. Also pass article.isRead as a direct prop to trigger rerender when changed.
 
 
 
 To Do
-3) Think about time more carefully, if nums are bad it will always show "less than a minute ago"
+1) Time Recency function has tradeofs. Can run it every time something changes, but this produces lots of unnecessary computations, and doesn't change the display that much. On the other hand, we dont want the timestamps to be too stale. Change the logic so it only runs once per hour...
