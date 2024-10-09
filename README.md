@@ -19,3 +19,10 @@ Components
 
 To Do
 1) Time Recency function has tradeofs. Can run it every time something changes, but this produces lots of unnecessary computations, and doesn't change the display that much. On the other hand, we dont want the timestamps to be too stale. Change the logic so it only runs once per hour...
+
+
+Testing
+1) Utils functions, especailly time
+2) Integration tests for services, and maybe for components. Want to check how it handles failures
+3) Might want to test reducers
+4) Want some kind of way to test if the memoization is going to stop working

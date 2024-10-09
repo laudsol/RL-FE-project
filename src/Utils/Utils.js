@@ -10,6 +10,10 @@ export const getOrderedArticles = (articles, articleIds, currentPage, articlesPe
 
 export const getTimeRecency = (articleTime, currentTime) => {
     const articleSecondsAgo = Math.round(currentTime - articleTime);
+    
+    if (isNaN(articleSecondsAgo) || articleSecondsAgo < 0) {
+        return 'a while ago';
+    }  
 
     const minuteSeconds = 60;
     const hourSeconds = minuteSeconds * 60;
