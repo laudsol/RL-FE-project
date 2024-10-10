@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
-import LatestArticles from '../Components/LatestArticles';
+import LatestArticles from '../../Components/LatestArticles';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 

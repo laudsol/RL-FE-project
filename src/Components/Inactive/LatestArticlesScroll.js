@@ -1,9 +1,9 @@
 import { useEffect, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getArticleIds, getArticles } from "../Services/articleApi.js";
-import { SET_ARTICLE_IDS, SET_ARTICLES, ADD_PAGE } from "../Store/reducers/reducers.js";
-import ArticleList from "./ArticleList.js";
-import { getOrderedArticles } from "../Utils/Utils.js";
+import { getArticleIds, getArticles } from "../../Services/articleApi.js";
+import { SET_ARTICLE_IDS, SET_ARTICLES, ADD_PAGE } from "../../Store/reducers/reducers.js";
+import ArticleList from "../ArticleList.js";
+import { getOrderedArticles } from "../../Utils/Utils.js";
 import { throttle } from 'lodash';
 
 

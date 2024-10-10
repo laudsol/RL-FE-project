@@ -43,6 +43,7 @@ const ArticleList = (props) => {
             <ol>
                 {props.orderedArticles.length > 0 && props.orderedArticles.map(article => {
                     return (
+                        article &&
                         <Article 
                             key={article.id}
                             article={article}
